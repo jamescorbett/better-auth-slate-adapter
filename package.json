@@ -1,7 +1,6 @@
 {
-  "name": "better-auth-slate-adapter",
+  "name": "@james/better-auth-slate-adapter",
   "version": "0.1.0",
-  "private": true,
   "description": "Better Auth database adapter for SlateDB.",
   "license": "Apache-2.0",
   "type": "module",
@@ -24,6 +23,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://forgejo.example.com/james/better-auth-slate-adapter.git"
+  },
+  "publishConfig": {
+    "registry": "https://forgejo.example.com/api/packages/james/npm/"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",

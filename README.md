@@ -2,7 +2,7 @@
 
 This package stores Better Auth data in SlateDB through the official Node binding.
 
-The package is private and is not published to npm.
+Forgejo Actions publishes tagged versions to the private Forgejo package registry.
 
 ## Requirements
 
@@ -15,8 +15,9 @@ SlateDB permits one active writer for a database path. Do not open the same path
 ## Install
 
 ```bash
-npm install better-auth @slatedb/uniffi
-npm install git+https://forgejo.example.com/james/better-auth-slate-adapter.git
+npm config set @james:registry https://forgejo.example.com/api/packages/james/npm/
+npm config set -- '//forgejo.example.com/api/packages/james/npm/:_authToken' "YOUR_FORGEJO_TOKEN"
+npm install better-auth @slatedb/uniffi @james/better-auth-slate-adapter
 ```
 
 ## Use
@@ -24,7 +25,7 @@ npm install git+https://forgejo.example.com/james/better-auth-slate-adapter.git
 ```ts
 import { betterAuth } from "better-auth";
 import { DbBuilder, ObjectStore } from "@slatedb/uniffi";
-import { slateDbAdapter } from "better-auth-slate-adapter";
+import { slateDbAdapter } from "@james/better-auth-slate-adapter";
 
 const objectStore = ObjectStore.resolve("file:///var/lib/my-app/data");
 const builder = new DbBuilder("auth", objectStore);
