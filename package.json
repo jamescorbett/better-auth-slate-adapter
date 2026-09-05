@@ -1,0 +1,45 @@
+{
+  "name": "better-auth-slate-adapter",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Better Auth database adapter for SlateDB.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://forgejo.example.com/james/better-auth-slate-adapter.git"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "@slatedb/uniffi": ">=0.16.0 <1",
+    "better-auth": ">=1.6.19 <2"
+  },
+  "devDependencies": {
+    "@better-auth/test-utils": "1.7.2",
+    "@slatedb/uniffi": "0.16.0",
+    "@types/node": "^24.3.0",
+    "better-auth": "1.7.2",
+    "typescript": "^5.9.2",
+    "vitest": "^4.0.0"
+  }
+}
