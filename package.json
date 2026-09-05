@@ -1,6 +1,6 @@
 {
   "name": "@james/better-auth-slate-adapter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Better Auth database adapter for SlateDB.",
   "license": "Apache-2.0",
   "type": "module",

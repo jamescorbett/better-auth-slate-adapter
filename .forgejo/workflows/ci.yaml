@@ -32,11 +32,13 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          registry-url: "https://forgejo.example.com/api/packages/james/npm/"
       - run: npm ci
       - run: npm run build
       - name: Publish package
         env:
           ACTIONS_ID_TOKEN_REQUEST_URL: ""
           NODE_AUTH_TOKEN: ${{ secrets.OWNER_TOKEN }}
-        run: npm publish
+        run: |
+          npm config set @james:registry https://forgejo.example.com/api/packages/james/npm/
+          npm config set -- '//forgejo.example.com/api/packages/james/npm/:_authToken' "$NODE_AUTH_TOKEN"
+          npm publish --registry=https://forgejo.example.com/api/packages/james/npm/
