@@ -20,13 +20,6 @@
       "import": "./dist/index.js"
     }
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://forgejo.example.com/james/better-auth-slate-adapter.git"
-  },
-  "publishConfig": {
-    "registry": "https://forgejo.example.com/api/packages/james/npm/"
-  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",

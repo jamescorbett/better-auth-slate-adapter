@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    tags:
-      - "v*"
   pull_request:
 
 jobs:
@@ -21,24 +19,3 @@ jobs:
       - run: npm run typecheck
       - run: npm test
       - run: npm run build
-
-  publish:
-    if: startsWith(forgejo.ref, 'refs/tags/v')
-    needs: test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "22"
-          cache: npm
-      - run: npm ci
-      - run: npm run build
-      - name: Publish package
-        env:
-          ACTIONS_ID_TOKEN_REQUEST_URL: ""
-          NODE_AUTH_TOKEN: ${{ secrets.OWNER_TOKEN }}
-        run: |
-          npm config set @james:registry https://forgejo.example.com/api/packages/james/npm/
-          npm config set -- '//forgejo.example.com/api/packages/james/npm/:_authToken' "$NODE_AUTH_TOKEN"
-          npm publish --registry=https://forgejo.example.com/api/packages/james/npm/
