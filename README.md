@@ -23,7 +23,7 @@ import { betterAuth } from "better-auth";
 import { DbBuilder, ObjectStore } from "@slatedb/uniffi";
 import { slateDbAdapter } from "@james/better-auth-slate-adapter";
 
-const objectStore = ObjectStore.resolve("file:///var/lib/my-app/data");
+const objectStore = ObjectStore.resolve("s3://my-bucket/my-app/data");
 const builder = new DbBuilder("auth", objectStore);
 const db = await builder.build();
 builder.dispose();
@@ -32,6 +32,8 @@ export const auth = betterAuth({
   database: slateDbAdapter(db),
 });
 ```
+
+SlateDB reads S3 credentials and region from the environment (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_REGION`). Point `AWS_ENDPOINT` at a compatible service such as MinIO or R2 to use non-AWS storage.
 
 The application owns the `Db` and `ObjectStore` objects. Shut down and dispose of them when the application stops.
 
